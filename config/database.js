@@ -1,13 +1,13 @@
-// include the lib
+// Import Package
 const mongoose = require('mongoose');
 
-// include Message Json
+// Import Message Json
 const { database, user, admin } = require('../message.json');
 
-// get the value from config
+// Import Config
 const { MONGO_URI } = process.env;
 
-// connect with database 
+// Connect with database 
 exports.connect = () => {
     // calling connect function
     mongoose

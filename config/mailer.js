@@ -1,10 +1,15 @@
+// Import Package
 const nodemailer = require('nodemailer');
-require("dotenv").config();
 
+// Import Package > Config
+require("dotenv").config();
+const { MAILID, PASSWORD } = process.env;
+
+// Export
 exports.transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: process.env.MAILID,
-    pass: process.env.PASSWORD
+    user: MAILID,
+    pass: PASSWORD
   }
 });

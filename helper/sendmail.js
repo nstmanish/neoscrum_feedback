@@ -1,4 +1,4 @@
-const {transporter}    = require('../configs/mailer');
+const {transporter}    = require('../config/mailer');
 const { mail }          = require('../message.json');
 const  { 
     ReasonPhrases, 

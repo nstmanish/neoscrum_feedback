@@ -1,7 +1,7 @@
 // require to access .env file value
 require('dotenv').config();
 // database configuration
-require('./configs/database').connect();
+require('./config/database').connect();
 
 var createError = require('http-errors');
 var express = require('express');

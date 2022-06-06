@@ -9,4 +9,4 @@ const feedSchema = new mongoose.Schema({
 });
 
 // export module
-module.exports = mongoose.model("Feed", userSchema);
+module.exports = mongoose.model("Feed", feedSchema);

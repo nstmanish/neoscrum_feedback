@@ -8,6 +8,7 @@ const feedController = require('../controllers/feedController');
 const auth = require('../middleware/auth');
 
 /* GET home page. */
+router.get ( '/', auth, feedController.index   );
 router.get ( '/feed', auth, feedController.getFeed   );
 router.post( '/feed', auth, feedController.createFeed);
 

@@ -34,7 +34,7 @@ exports.register = async ( req, res ) => {
         let user = await User.create({
             name,
             email,    
-            profile : req.file.path,  
+            // profile : req.file.path ,  
             password : encryptedPassword, 
             token: null,   
         });
@@ -53,7 +53,7 @@ exports.register = async ( req, res ) => {
 
 }
 
-
+// Login
 exports.login = async ( req, res ) => {
 
     try {
@@ -67,7 +67,7 @@ exports.login = async ( req, res ) => {
         if (!user) { return res.status(StatusCodes.NOT_FOUND).json(user) }
 
         // Check the password
-        if (await !bcrypt.compare(password, user.password)) { return res.status(StatusCodes.FORBIDDEN).json(user) }
+        if (!(await bcrypt.compare(password, user.password))) { return res.status(StatusCodes.FORBIDDEN).json("dd") }
 
         // Send JWT
         if (user && (await bcrypt.compare(password, user.password))) {
@@ -85,7 +85,7 @@ exports.login = async ( req, res ) => {
             return res.status(StatusCodes.OK).json(user);
         }
 
-        return res.status(StatusCodes.BAD_REQUEST).json({});
+        return res.status(StatusCodes.BAD_REQUEST).json({user});
 
     }catch(err){
 
@@ -94,6 +94,7 @@ exports.login = async ( req, res ) => {
     }
 }
 
+// logout
 exports.logout = async ( req, res ) => {
     
 }

@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
     name      : { type: String, default: null, required: true },
     email     : { type: String, unique: true, required: true },
-    profile   : { type: String, default: null },
+    profile   : { type: String, default: "https://picsum.photos/200" },
     password  : { type: String, required: true },
     token     : { type: String, default: null },
 });

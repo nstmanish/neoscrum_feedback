@@ -10,5 +10,9 @@
 
     "admin": {
         "NEW_USER_REGISTER" : "USER Added !"
+    },
+
+    "mail" : {
+        "LOGIN_PASSWORD": "your login password for feed back portal"
     }
 }

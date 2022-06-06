@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
     email     : { type: String, unique: true, required: true },
     profile   : { type: String, default: "https://picsum.photos/200" },
     password  : { type: String, required: true },
+    isAdmin   : { type: Boolean, default: false },
     token     : { type: String, default: null },
 });
 

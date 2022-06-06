@@ -1,0 +1,14 @@
+{
+    "database" : {
+        "ERROR_CONNECTING": "error connecting database",
+        "CONNECTED": "Database Connection Established"
+    },
+
+    "user": {
+        "NO_FEED_BACK" : "No Feed Back :("
+    },
+
+    "admin": {
+        "NEW_USER_REGISTER" : "USER Added !"
+    }
+}

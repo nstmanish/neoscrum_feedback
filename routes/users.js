@@ -9,12 +9,13 @@ const Validator = require('../middleware/validator');
 const Admin     = require('../middleware/admin');
 
 // Multer
-const upload = require('../helper/file').upload;
-const auth   = require('../middleware/auth');
+const Upload = require('../helper/file').upload;
+const Auth   = require('../middleware/auth');
 
 /* GET users listing. */
-router.post('/register' , [auth,  upload.single('profile'), Validator('register'), Admin ], userController.register);
-router.post('/login'    , Validator('login')             , userController.login   );
-router.post('/logout'   , auth                           , userController.logout  );
+router.post('/register' , [ Auth,  Upload.single('profile'), Validator('register'), Admin ], userController.register);
+router.post('/login'    , Validator('login')                                              , userController.login   );
+router.post('/logout'   , Auth                                                            , userController.logout  );
 
+/** Export */
 module.exports = router;

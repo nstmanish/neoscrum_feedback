@@ -5,12 +5,12 @@ var router = express.Router();
 const feedController = require('../controllers/feedController');
 
 // Include Middleware
-const auth = require('../middleware/auth');
+const Auth = require('../middleware/auth');
 const Validator = require('../middleware/validator')
 
 /* GET home page. */
-router.get ( '/', auth, feedController.index   );
-router.get ( '/feed', auth, feedController.getFeed   );
-router.post( '/feed', [ auth, Validator('feed') ], feedController.createFeed);
+router.get ( '/'    ,   Auth,                      feedController.index      );
+router.get ( '/feed',   Auth,                      feedController.getFeed    );
+router.post( '/feed', [ Auth, Validator('feed') ], feedController.createFeed );
 
 module.exports = router;

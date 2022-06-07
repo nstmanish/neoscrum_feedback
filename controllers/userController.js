@@ -16,13 +16,17 @@ const {
 // include models
 const User = require('../models/userModel');
 
+
+// Include Policy
+const Allowed = require('../policies/onlyAmin');
+
 /**
  * This function Register new Employee | Admin can only add Employee
  */
 exports.register = async ( req, res ) => {
     try {
         const { name, email } = req.body;
-        // Validation
+        // Generate Password
         const generatedPassword = Password.password;
         // Encrypt Password
         const encryptedPassword = await bcrypt.hash(generatedPassword, 10);

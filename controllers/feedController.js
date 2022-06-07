@@ -33,9 +33,7 @@ exports.getFeed = async ( req, res ) => {
 exports.createFeed = async ( req, res ) => {
 
     try {
-
-        console.log("=====>", req.body);
-
+        
         const user = await User.findOne({ _id : req.body.userId });
 
         let feed = await Feed.create({

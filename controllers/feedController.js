@@ -6,7 +6,7 @@ const {
 }           =  require('http-status-codes');
 
 // Import Model
-const User = require('../models');
+const User = require('../models/userModel');
 const Feed = require('../models/feedModel');
 
 // List All The User

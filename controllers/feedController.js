@@ -12,10 +12,10 @@ const User = require('../models/userModel');
 const Feed = require('../models/feedModel');
 
 // List All The User
-exports.index = async ( req, res ) => {
+exports.dashboard = async ( req, res ) => {
     try {
-        let user = await User.find({});
-        res.status(StatusCodes.OK).json({data:user});
+        let feeds = await Feed.find({"feedto": req.user.user_id }, 'comment');
+        res.status(StatusCodes.OK).json({data:feeds});
     } catch (err) {
         res.status(StatusCodes.BAD_REQUEST).send(err);
     }
@@ -24,8 +24,8 @@ exports.index = async ( req, res ) => {
 // Get The Feeds
 exports.getFeed = async ( req, res ) => {
     try {
-        let feed = await Feed.find({"feedto": req.user.user_id }, 'comment');
-        res.status(StatusCodes.OK).json({data:feed});
+        let user = await User.findRandom().limit(3);
+        res.status(StatusCodes.OK).json({data:user});
     } catch (err) {
         res.status(StatusCodes.BAD_REQUEST).send(err);
     }

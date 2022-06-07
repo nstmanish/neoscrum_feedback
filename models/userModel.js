@@ -1,6 +1,6 @@
 // inlude mongoose package
 const mongoose = require('mongoose');
-
+const random   = require('mongoose-random');
 // Create Schema
 const userSchema = new mongoose.Schema({
     name      : { type: String, default: null, required: true },
@@ -11,5 +11,6 @@ const userSchema = new mongoose.Schema({
     token     : { type: String, default: null },
 });
 
+userSchema.plugin(random, { path: 'r' });
 // export module
 module.exports = mongoose.model("User", userSchema);

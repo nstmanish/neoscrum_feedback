@@ -9,14 +9,13 @@ const Joi   = require('joi')
 const Validators = require('../validators');
 
 
-module.exports = validator => {
+module.exports =  validator => {
 
     if(!Validators.hasOwnProperty(validator)){
         throw new Error(`'${validator}' validator is not exist`)
     }
 
     return async (req, res, next) => {
-        console.log('sss======>',req);
         try {
             const validated = await Validators[validator].validateAsync(req.body)
             req.body = validated
@@ -27,5 +26,4 @@ module.exports = validator => {
             res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({message:ReasonPhrases.INTERNAL_SERVER_ERROR})
         }
     }
-        
 }

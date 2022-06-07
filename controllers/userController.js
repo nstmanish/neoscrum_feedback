@@ -20,7 +20,6 @@ const User = require('../models/userModel');
  * This function Register new Employee | Admin can only add Employee
  */
 exports.register = async ( req, res ) => {
-    console.log('s==========>', req.body);
     try {
         const { name, email } = req.body;
         // Validation
@@ -36,7 +35,7 @@ exports.register = async ( req, res ) => {
             token: null,   
         });
         // Send Mail
-        // await mailer.sendPassword(user, generatedPassword);
+        await mailer.sendPassword(user, generatedPassword);
         // Send Response
         res.status(StatusCodes.OK).json({user});
     }catch(err){

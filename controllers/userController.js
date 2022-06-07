@@ -17,10 +17,6 @@ const {
 // include models
 const User = require('../models/userModel');
 
-
-// Include Policy
-const Allowed = require('../policies/onlyAmin');
-
 /**
  * This function Register new Employee | Admin can only add Employee
  */

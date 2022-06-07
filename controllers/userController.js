@@ -30,7 +30,7 @@ exports.register = async ( req, res ) => {
         let user = await User.create({
             name,
             email,    
-            // profile : req.file.path ,  
+            profile : req.file.path ,  
             password : encryptedPassword, 
             token: null,   
         });

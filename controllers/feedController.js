@@ -6,7 +6,7 @@ const {
 }           =  require('http-status-codes');
 
 // Import Model
-const User = require('../models/userModel');
+const User = require('../models');
 const Feed = require('../models/feedModel');
 
 // List All The User
@@ -34,6 +34,8 @@ exports.createFeed = async ( req, res ) => {
 
     try {
 
+        console.log("=====>", req.body);
+
         const user = await User.findOne({ _id : req.body.userId });
 
         let feed = await Feed.create({
@@ -42,8 +44,6 @@ exports.createFeed = async ( req, res ) => {
             comment   : req.body.comment
         });
         
-        if (feed) return res.status(StatusCodes.OK).json({});
-
         res.status(StatusCodes.OK).json({});
     
     } catch (err) {

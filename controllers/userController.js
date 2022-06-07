@@ -6,6 +6,7 @@ const jwt    = require("jsonwebtoken");
 const Password = require("../helper/password");
 const mailer   = require('../helper/sendmail');
 
+const {USER}  = require('../message.json');
 const {
 	ReasonPhrases,
 	StatusCodes,
@@ -55,9 +56,9 @@ exports.login = async ( req, res ) => {
         // Get The user
         const user = await User.findOne({ email });
         // Check user exist
-        if (!user) { return res.status(StatusCodes.NOT_FOUND).json(user) }
+        if (!user) { return res.status(StatusCodes.NOT_FOUND).json({message:USER.USER_NOT_FOUND}) }
         // Check the password
-        if (!(await bcrypt.compare(password, user.password))) { return res.status(StatusCodes.FORBIDDEN).json("dd") }
+        if (!(await bcrypt.compare(password, user.password))) { return res.status(StatusCodes.FORBIDDEN).json({message:USER.WRONG_PASSWORD}) }
         // Send JWT
         if (user && (await bcrypt.compare(password, user.password))) {
             const token = await jwt.sign(
@@ -72,11 +73,4 @@ exports.login = async ( req, res ) => {
         }
         return res.status(StatusCodes.BAD_REQUEST).json({user});
     }catch(err){ res.status(StatusCodes.BAD_REQUEST).send(err) }
-}
-
-// logout
-exports.logout = async ( req, res ) => {
-    try {
-        res.status(StatusCodes.OK)
-    }catch(err){  res.status(StatusCodes.BAD_REQUEST).send(err) }
 }

@@ -4,8 +4,10 @@
         "CONNECTED": "Database Connection Established"
     },
 
-    "user": {
-        "NO_FEED_BACK" : "No Feed Back :("
+    "USER": {
+        "NO_FEED_BACK" : "No Feed Back :(",
+        "USER_NOT_FOUND" : "User Not Found",
+        "WRONG_PASSWORD" : "Wrong Credential"
     },
 
     "admin": {
@@ -14,5 +16,14 @@
 
     "mail" : {
         "LOGIN_PASSWORD": "your login password for feed back portal"
+    },
+
+    "AUTH" : {
+        "TOCKEN_REQUIRED": "A token is required for authentication",
+        "INVALID_TOCKEN" : "Invalid Token"
+    },
+
+    "FEED" : {
+        "FEED_SEND" : "feedback have been recorded, Thank you !"
     }
 }

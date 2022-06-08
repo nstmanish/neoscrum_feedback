@@ -1,3 +1,7 @@
+/**
+ * This middleware is use to check AUTHORIZATION of admin
+ */
+
 const  { 
     ReasonPhrases, 
     StatusCodes, 

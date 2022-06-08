@@ -11,6 +11,9 @@ const { AUTH } = require('../message.json');
 
 // Config File
 const config = process.env;
+/** 
+ * This middleware is use for allowing only authenticated user to access the api
+*/
 
 const verifyToken = (req, res, next) => {
   

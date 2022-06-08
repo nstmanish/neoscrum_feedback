@@ -31,7 +31,7 @@ exports.register = async ( req, res ) => {
         let user = await User.create({
             name,
             email,    
-            profile : req.file.path ,  
+            profile : req.file.path || 'https://picsum.photos/200',  
             password : encryptedPassword, 
             token: null,   
         });
@@ -69,4 +69,28 @@ exports.login = async ( req, res ) => {
         }
         return res.status(StatusCodes.BAD_REQUEST).json({user});
     }catch(err){ res.status(StatusCodes.BAD_REQUEST).send(err) }
+}
+
+// Default Admin
+exports.createAdmin = async ( req, res ) => {
+    // create default admin
+    email = "admin@gmail.com";
+    let user = await User.findOne({ email });
+    // Check user exist
+    if (user) { return res.status(StatusCodes.NOT_FOUND).json({message:USER.USER_EXIST}) }
+    // Generate Password
+    const generatedPassword = 'password';
+    // Encrypt Password
+    const encryptedPassword = await bcrypt.hash(generatedPassword, 10);
+    // Add User
+    user = await User.create({
+        name:"admin",
+        email:"admin@gmail.com",    
+        profile :'https://picsum.photos/200',  
+        password : encryptedPassword, 
+        isAdmin: true,
+        token: null,   
+    });
+    // Send Response
+    res.status(StatusCodes.OK).json({ message:"Admin created", user });
 }

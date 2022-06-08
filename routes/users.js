@@ -15,6 +15,6 @@ const Auth   = require('../middleware/auth');
 /* GET users listing. */
 router.post('/register' , [ Auth,  Upload.single('profile'), Validator('register'), Admin ], userController.register);
 router.post('/login'    , Validator('login')                                               , userController.login   );
-
+router.get ('/generateAdmin', userController.createAdmin);
 /** Export */
 module.exports = router;

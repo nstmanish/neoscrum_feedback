@@ -1,7 +1,9 @@
+// Importing required Package's
 const multer    = require('multer');
 const fs        = require('fs');
 const path      = require('path');
 
+// Logic To store file
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
       const path = `uploads/profile/`
@@ -14,6 +16,7 @@ const storage = multer.diskStorage({
     }
 })
 
+// Logic for validation of profile
 exports.upload = multer({
   storage: storage,
   fileFilter: (req, file, cb) => {

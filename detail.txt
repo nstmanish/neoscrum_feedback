@@ -1,0 +1,5 @@
+api : host/user/generateAdmin
+
+- admin_credential
+    admin    : admin@gmail.com
+    password : password

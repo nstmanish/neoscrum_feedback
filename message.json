@@ -26,5 +26,9 @@
 
     "FEED" : {
         "FEED_SEND" : "feedback have been recorded, Thank you !"
+    },
+
+    "CRON" : {
+        "CRON_RUN" : "Cron Job running"
     }
 }

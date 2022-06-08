@@ -9,6 +9,9 @@ const userSchema = new mongoose.Schema({
     password  : { type: String, required: true },
     isAdmin   : { type: Boolean, default: false },
     token     : { type: String, default: null },
+},
+{
+    timestamps: true
 });
 
 userSchema.plugin(random, { path: 'r' });

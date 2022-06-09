@@ -62,3 +62,20 @@ exports.notifyCron = (req, res) => {
         res.status(StatusCodes.BAD_REQUEST).send(err);
     }
 }
+
+
+//
+// db.users.aggregate([
+//     {
+//         $lookup : {
+//              from: 'feeds',
+//              localField: '_id',
+//              foreignField: 'feedto',
+//              as: 'feedback'
+//         }
+//     },{
+//          $project : {
+//             "feedback.feedby": 0
+//         } 
+//     }
+// ]);

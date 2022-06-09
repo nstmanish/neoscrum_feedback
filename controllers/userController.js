@@ -50,7 +50,7 @@ exports.login = async ( req, res ) => {
     try {
         const { email, password } = req.body;
         // Get The user
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ email }).select("-r");
         // Check user exist
         if (!user) { return res.status(StatusCodes.NOT_FOUND).json({message:USER.USER_NOT_FOUND}) }
         // Check the password
@@ -75,7 +75,7 @@ exports.login = async ( req, res ) => {
 exports.createAdmin = async ( req, res ) => {
     // create default admin
     email = "admin@gmail.com";
-    let user = await User.findOne({ email });
+    let user = await User.findOne({ email }).select("-r");
     // Check user exist
     if (user) { return res.status(StatusCodes.NOT_FOUND).json({message:USER.USER_EXIST}) }
     // Generate Password

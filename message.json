@@ -8,7 +8,8 @@
         "NO_FEED_BACK" : "No Feed Back :(",
         "USER_NOT_FOUND" : "User Not Found",
         "WRONG_PASSWORD" : "Wrong Credential",
-        "USER_EXIST": "Admin Already Exist"
+        "USER_EXIST": "User Exist",
+        "USER_CREATED": "User Created"
     },
 
     "admin": {

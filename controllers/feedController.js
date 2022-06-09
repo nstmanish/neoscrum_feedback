@@ -17,7 +17,7 @@ const Feed = require('../models/feedModel');
 // List All The User
 exports.dashboard = async ( req, res ) => {
     try {
-        let user  = await User.findOne({ _id : req.user.user_id });
+        let user  = await User.findOne({ _id : req.user.user_id }).select('-r -password');
         let feeds = await Feed.find({"feedto": req.user.user_id }, 'comment createdAt');
         res.status(StatusCodes.OK).json({data:{ feeds, user }});
     } catch (err) {
@@ -28,7 +28,7 @@ exports.dashboard = async ( req, res ) => {
 // Get The Feeds
 exports.getFeed = async ( req, res ) => {
     try {
-        let user = await User.findRandom().limit(3);
+        let user = await User.findRandom().limit(3).select('name profile');
         res.status(StatusCodes.OK).json({data:user});
     } catch (err) {
         res.status(StatusCodes.BAD_REQUEST).send(err);

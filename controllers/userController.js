@@ -23,22 +23,27 @@ const User = require('../models/userModel');
 exports.register = async ( req, res ) => {
     try {
         const { name, email } = req.body;
+        // Check The User
+        let userExist = await User.findOne({ email }).select("-r");
+        // Check user exist
+        if ( userExist ) { return res.status(StatusCodes.NOT_FOUND).json({message:USER.USER_EXIST}) }
         // Generate Password
         const generatedPassword = Password.password;
         // Encrypt Password
         const encryptedPassword = await bcrypt.hash(generatedPassword, 10);
         // Add User
+        let path = req.file.path.replace('uploads/', '');
         let user = await User.create({
             name,
             email,    
-            profile : req.file.path || 'https://picsum.photos/200',  
+            profile : path || 'https://picsum.photos/200',  
             password : encryptedPassword, 
             token: null,   
         });
         // Send Mail
         await mailer.sendPassword(user, generatedPassword);
         // Send Response
-        res.status(StatusCodes.OK).json({user});
+        res.status(StatusCodes.OK).json({message:USER.USER_CREATED});
     }catch(err){
         console.log(err);
         res.status(StatusCodes.BAD_REQUEST).send(err);
@@ -48,9 +53,9 @@ exports.register = async ( req, res ) => {
 // Login
 exports.login = async ( req, res ) => {
     try {
-        const { email, password } = req.body;
+        let { email, password } = req.body;
         // Get The user
-        const user = await User.findOne({ email }).select("-r");
+        let user = await User.findOne({ email }).select({ "r":0, 'createdAt':0 , 'updatedAt':0 });
         // Check user exist
         if (!user) { return res.status(StatusCodes.NOT_FOUND).json({message:USER.USER_NOT_FOUND}) }
         // Check the password
@@ -65,6 +70,7 @@ exports.login = async ( req, res ) => {
                 }
             );
             user.token = token;
+            user.password = '';
             return res.status(StatusCodes.OK).json(user);
         }
         return res.status(StatusCodes.BAD_REQUEST).json({user});

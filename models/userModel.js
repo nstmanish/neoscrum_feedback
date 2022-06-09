@@ -4,7 +4,7 @@ const random   = require('mongoose-random');
 // Create Schema
 const userSchema = new mongoose.Schema({
     name      : { type: String, default: null, required: true },
-    email     : { type: String, unique: true, required: true },
+    email     : { type: String, unique: true, required: true, index: true },
     profile   : { type: String, default: "https://picsum.photos/200" },
     password  : { type: String, required: true },
     isAdmin   : { type: Boolean, default: false },

@@ -38,7 +38,7 @@
           {
             "in": "body",
             "name": "body",
-            "description": "User that want to login",
+            "description": "Enter login mail and password",
             "schema": {
               "$ref": "#/definitions/User"
             }
@@ -46,13 +46,13 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
-            "schema": {
-              "email": "#/definitions/User"
-            }
+            "description": "successful"
           },
-          "400": {
-            "description": "Invalid Order"
+          "400":{
+            "description":"Error"
+          },
+          "403":{
+            "description":"Wrong Password Or Email"
           }
         }
       }
@@ -86,13 +86,13 @@
           ],  
           "responses": {
               "200": {
-                "description": "successful operation",
+                "description": "successful",
                 "schema": {
                   "email": "#/definitions/User"
                 }
               },
-              "400": {
-                "description": "Invalid Order"
+              "400":{
+                "description":"Error"
               }
           }
       }
@@ -107,7 +107,7 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "success full"
+            "description": "successful"
           },
           "404": {
             "description": "Failed"
@@ -124,6 +124,9 @@
         "responses":{
           "200":{
             "description":"Response successfull"
+          },
+          "400":{
+            "description":"Error"
           }
         }
       }
@@ -138,7 +141,7 @@
         ],
         "responses":{
           "200":{
-            "description":"success full"
+            "description":"successful"
           }
         }
       },
@@ -159,7 +162,10 @@
         ],
         "responses":{
           "200":{
-            "description":"success full"
+            "description":"successful"
+          },
+          "400":{
+            "description":"Error"
           }
         }
       }
@@ -169,7 +175,15 @@
         "tags":["cron"],
         "security":[{
           "api_key": []
-        }]
+        }],
+        "responses":{
+          "200":{
+            "description":"successful"
+          },
+          "400":{
+            "description":"Error"
+          }
+        }
       }
     }
   },
@@ -178,13 +192,15 @@
       "type": "object",
       "properties": {
         "email": {
-          "type": "string",
-          "format": "manish.chourasiya@neosoft.com"
+          "type": "string"
         },
         "password": {
-          "type": "string",
-          "format": "m6CfzVEAxW"
+          "type": "string"
         }
+      },
+      "example":{
+        "email":"manish.chourasiya@neosoft.com",
+        "password":"m6CfzVEAxW"
       }
     },
     "Feed": {
@@ -196,6 +212,10 @@
         "comment":{
           "type":"string"
         }
+      },
+      "example": {
+        "userId": "enter_id_from_feed_list",
+        "comment": "this is just a demo comment"
       }
     }
   },

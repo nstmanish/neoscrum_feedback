@@ -57,7 +57,7 @@ exports.login = async ( req, res ) => {
         // Get The user
         let user = await User.findOne({ email }).select({ "r":0, 'createdAt':0 , 'updatedAt':0 });
         // Check user exist
-        if (!user) { return res.status(StatusCodes.NOT_FOUND).json({message:USER.USER_NOT_FOUND}) }
+        if (!user) { return res.status(StatusCodes.FORBIDDEN).json({message:USER.USER_NOT_FOUND}) }
         // Check the password
         if (!(await bcrypt.compare(password, user.password))) { return res.status(StatusCodes.FORBIDDEN).json({message:USER.WRONG_PASSWORD}) }
         // Send JWT

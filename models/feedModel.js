@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const feedSchema = new mongoose.Schema({
     feedby    : { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     feedto    : { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    comment   : { type: String, unique: true, required: true }
+    comment   : { type: String, required: true }
 },
 {
     timestamps: true

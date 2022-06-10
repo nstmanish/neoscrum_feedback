@@ -1,0 +1,210 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "FeedBack Employee Portal"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "auth",
+      "description": "Login | Register | Generate Admin"
+    },
+    {
+      "name": "user",
+      "description": "Dashboard | Feed"
+    },
+    {
+      "name": "cron",
+      "description": "Use to run cron job"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],  
+  "paths": {
+    "/user/login": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "description": "Login User",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "User that want to login",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "email": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "Invalid Order"
+          }
+        }
+      }
+    },
+    "/user/register": {
+      "post":{
+          "tags": ["auth"],
+          "security":[{
+              "api_key": []
+          }],
+          "consumes": "multipart/form-data",
+          "parameters": [
+              {
+                "in": "formData",
+                "name": "profile",
+                "description": "User that want to login",
+                "type": "file"
+              },
+              {
+                  "in": "formData",
+                  "name": "name",
+                  "description": "User that want to login",
+                  "type": "string"
+              },
+              {
+                  "in": "formData",
+                  "name": "email",
+                  "description": "User that want to login",
+                  "type": "string"
+              }
+          ],  
+          "responses": {
+              "200": {
+                "description": "successful operation",
+                "schema": {
+                  "email": "#/definitions/User"
+                }
+              },
+              "400": {
+                "description": "Invalid Order"
+              }
+          }
+      }
+    },
+    "/user/generateAdmin": {
+      "get": {
+        "tags":["auth"],
+        "security" :[{
+          "api_key":[]
+        }],
+        "produce":[ "application/json" ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "success full"
+          },
+          "404": {
+            "description": "Failed"
+          }
+        }
+      }
+    },
+    "/dashboard": {
+      "get":{
+        "tags":["user"],
+        "security":[{
+          "api_key": []
+        }],
+        "responses":{
+          "200":{
+            "description":"Response successfull"
+          }
+        }
+      }
+    },
+    "/feed": {
+      "get": {
+        "tags":["user"],
+        "security":[
+          {
+            "api_key": []
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":"success full"
+          }
+        }
+      },
+      "post": {
+        "tags":["user"],
+        "security":[{
+          "api_key": []
+        }],
+        "parameters":[
+          {
+            "in": "body",
+            "name": "userId",
+            "description": "User that want to login",
+            "schema": {
+              "$ref":"#/definitions/Feed"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":"success full"
+          }
+        }
+      }
+    },
+    "/notifyCron": {
+      "get": {
+        "tags":["cron"],
+        "security":[{
+          "api_key": []
+        }]
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "format": "manish.chourasiya@neosoft.com"
+        },
+        "password": {
+          "type": "string",
+          "format": "m6CfzVEAxW"
+        }
+      }
+    },
+    "Feed": {
+      "type": "object",
+      "properties": {
+        "userId":{
+          "type":"string"
+        },
+        "comment":{
+          "type":"string"
+        }
+      }
+    }
+  },
+  "securityDefinitions":{
+      "api_key":{      
+          "type": "apiKey",
+          "in": "header",     
+          "name": "x-access-token"
+      }
+  }
+}
+  
